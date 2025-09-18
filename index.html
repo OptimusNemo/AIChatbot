@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QApture Dashboard</title>  
+<!-- ✅ Load Raleway font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300,400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="interactive-bg" aria-hidden="true"></div>
+  <div class="header">
+    <img src="briefcase-svgrepo-com.svg" alt="Dashboard Icon" class="dashboard-icon" />
+    <h1>QApture Dashboard</h1>
+    <label class="switch">
+      <input type="checkbox" id="nightModeToggle">
+      <span class="slider"></span>
+    </label>
+    <span class="toggle-label" id="toggleLabel">Night Mode</span>
+  </div>
+  
+<div class="upload-section">
+  <form>
+    <div class="file-row">
+      <label for="csvFileInput">Upload CSV File:</label>
+      <label class="upload-cta-wrap">
+        <span class="custom-file-upload upload-cta" id="csvUploadBtn">
+          <span class="upload-cta__text">Upload</span>
+          <input type="file" id="csvFileInput" accept=".csv" onchange="parseFile(event, 'csv')" />
+        </span>
+      </label>
+      <span id="csvUploadMessage" class="upload-message"></span>
+    </div>
+  </form>
+</div>
+
+
+  <!-- Grid Summary -->
+  <section class="grid-summary">
+    <div class="summary-card animate" id="card-total">
+      <img src="icon-total.png" alt="Total Icon" class="icon" />
+      <span class="label">Total Test Cases</span>
+      <span id="totalCount" class="value">-</span>
+    </div>
+    <div class="summary-card animate" id="card-pass">
+      <img src="icon-pass.png" alt="Pass Icon" class="icon" />
+      <span class="label">Passed</span>
+      <span id="passedCount" class="value">-</span>
+    </div>
+    <div class="summary-card animate" id="card-fail">
+      <img src="icon-fail.png" alt="Fail Icon" class="icon" />
+      <span class="label">Failed</span>
+      <span id="failedCount" class="value">-</span>
+    </div>
+    <div class="summary-card animate" id="card-flaky">
+      <img src="icon-flaky.png" alt="Flaky Icon" class="icon" />
+      <span class="label">Flaky</span>
+      <span id="flakyCount" class="value">-</span>
+    </div>
+    <div class="summary-card animate" id="card-other">
+      <img src="icon-other.svg" alt="Other Icon" class="icon" />
+      <span class="label">Other</span>
+      <span id="otherCount" class="value">-</span>
+    </div>
+  </section>
+
+  <!-- Graph Section styled like a testimonial card -->
+<div id="graphSection" class="graph-card" style="display: none;">
+  <div class="graph-header">
+    <span class="graph-title">Test Case Distribution</span>
+    <span class="graph-subtitle">Visual summary of Pass/Fail/Flaky/Other</span>
+  </div>
+  <div class="graph-content">
+    <canvas id="summaryChart" width="320" height="320"></canvas>
+    <div class="graph-legend" id="graphLegend"></div>
+  </div>
+</div>
+
+  <!-- Chart Section -->
+  <div id="chartSection" class="chart-container" style="display: none;">
+  <canvas id="summaryChart" width="320" height="320"></canvas>
+</div>
+
+
+
+  <!-- Chat Section -->
+  <div id="chat-section">
+    <h2>
+      <img src="assistant.png" alt="Chatbot Icon" class="icon chatbot-icon" />
+      Chat with QApture AI
+    </h2>
+    <div class="chat-upload">
+  <div class="file-row">
+    <label for="chatCsvFileInput">Upload CSV File for Chatbot:</label>
+    <label class="upload-cta-wrap">
+      <span class="custom-file-upload upload-cta" id="chatCsvUploadBtn">
+        <span class="upload-cta__text">Upload</span>
+        <input type="file" id="chatCsvFileInput" accept=".csv" onchange="loadChatCsv(event)" />
+      </span>
+    </label>
+    <span id="uploadMessage" class="upload-message"></span>
+  </div>
+</div>
+
+    <div id="chatbox" class="chat-box"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask something..." />
+      <button onclick="sendMessage()" class="button button-primary">Send</button>
+      <button onclick="clearChat()" class="button button-danger">Clear</button>
+    </div>
+  </div>
+
+  <script src="summary_chart.js"></script>
+  <script src="file_parser.js"></script>
+  <script src="llama_chatbot.js"></script>
+  <script src="upload.js"></script>
+  <script src="voice_input.js"></script>
+  <script>
+    // Night mode toggle logic
+    const toggleBtn = document.getElementById('nightModeToggle');
+    const toggleLabel = document.getElementById('toggleLabel');
+    toggleBtn.addEventListener('change', function () {
+      document.body.classList.toggle('night-mode', toggleBtn.checked);
+      toggleLabel.textContent = toggleBtn.checked ? 'Night Mode' : 'Day Mode';
+    });
+
+    document.getElementById('userInput').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    });
+    document.getElementById('chatCsvFile').addEventListener('change', function () {
+      const fileCount = this.files.length;
+      document.getElementById('uploadMessage').textContent =
+        fileCount > 0 ? `${fileCount} file${fileCount > 1 ? 's' : ''} uploaded successfully` : '';
+    });
+    document.getElementById('csvFile').addEventListener('change', function () {
+      const fileCount = this.files.length;
+      document.getElementById('csvUploadMessage').textContent =
+        fileCount > 0 ? `${fileCount} file${fileCount > 1 ? 's' : ''} uploaded successfully` : '';
+    });
+    document.getElementById('jsonFile').addEventListener('change', function () {
+      const fileCount = this.files.length;
+      document.getElementById('jsonUploadMessage').textContent =
+        fileCount > 0 ? `${fileCount} file${fileCount > 1 ? 's' : ''} uploaded successfully` : '';
+    });
+
+    // Update chart on JSON upload as well
+    function loadJsonSummary(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const data = JSON.parse(e.target.result);
+        let pass = 0, fail = 0, flaky = 0, other = 0;
+
+        data.forEach(test => {
+          const status = test.Status?.toLowerCase();
+          if (status === "pass") pass++;
+          else if (status === "fail") fail++;
+          else if (status === "flaky") flaky++;
+          else other++;
+        });
+
+        document.getElementById("totalCount").textContent = data.length;
+        document.getElementById("passedCount").textContent = pass;
+        document.getElementById("failedCount").textContent = fail;
+        document.getElementById("flakyCount").textContent = flaky;
+        document.getElementById("otherCount").textContent = other;
+
+        // Update chart
+        if (typeof updateSummaryChart === "function") {
+          updateSummaryChart(pass, fail, flaky, other);
+        }
+      };
+      reader.readAsText(file);
+    }    
+  </script>
+  <script src="bg-parallax.js"></script>
+</body>
+</html>

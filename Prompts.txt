@@ -1,0 +1,45 @@
+failed 
+what failed in the last regression run
+list all failed test cases from the last build
+list all fail
+list all failed
+list all fail test
+list all failed test cases
+list all fail test cases
+
+flaky
+what flaky in the last regression run
+list all flaky test cases from the last build
+list all flaky
+list all flaky test
+list all flaky test cases
+list all flaky test case
+pass
+what passed in the last regression run
+list all passed test cases from the last build
+list all pass
+list all passed
+list all pass test
+list all passed test cases
+
+ 
+defects
+"total defects"
+"sum of defects"
+"how many defects are raised in my project"--add these
+"defects" add these
+ 
+ 
+defect density
+"defect density"
+"what is the defect density"
+"what is the total defect density"
+"Calculate defect density for my project."
+"What is the total defect density?"
+
+module wise failed test case count
+module wise defect count
+total defects per module
+	
+ 
+pass/fail ratio

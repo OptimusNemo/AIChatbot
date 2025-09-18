@@ -1,0 +1,51 @@
+Name,Status,Failure Reason,Module,defect _raised
+Test_1_e-enable_transparent_partnerships,fail,Incorrect credentials,Login Function,1
+Test_2_scale_dot-com_synergies,pass,,Money Transaction,
+Test_3_whiteboard_rich_methodologies,fail,AssertionError,Money Transaction,1
+Test_4_benchmark_best-of-breed_relationships,pass,,Activity History,
+Test_5_morph_world-class_solutions,fail,Insufficient balance,Cancel Transaction,3
+Test_6_incentivize_world-class_vortals,pass,,Cancel Transaction,
+Test_7_e-enable_front-end_convergence,fail,TimeoutException,Homepage,5
+Test_8_streamline_bricks-and-clicks_e-business,pass,,Cancel Transaction,
+Test_9_orchestrate_cutting-edge_functionalities,pass,,Login Function,
+Test_10_morph_clicks-and-mortar_interfaces,pass,,Cancel Transaction,
+Test_11_empower_scalable_communities,flaky,DOM not stable,Money Transaction,
+Test_12_empower_24/365_deliverables,pass,,Login Function,
+Test_13_revolutionize_bleeding-edge_technologies,fail,Insufficient balance,Activity History,2
+Test_14_leverage_sticky_relationships,pass,,Login Function,
+Test_15_transition_ubiquitous_relationships,flaky,Session expired,Cancel Transaction,
+Test_16_engage_innovative_web_services,pass,,Homepage,
+Test_17_morph_turn-key_infrastructures,fail,Validation error,Login Function,2
+Test_18_engineer_cross-media_platforms,fail,NullPointerException,Cancel Transaction,3
+Test_19_facilitate_dynamic_eyeballs,pass,,Cancel Transaction,
+Test_20_embrace_granular_partnerships,pass,,Money Transaction,
+Test_21_synthesize_bleeding-edge_bandwidth,pass,,Homepage,
+Test_22_redefine_24/365_channels,pass,,Homepage,
+Test_23_transition_turn-key_users,pass,,Money Transaction,
+Test_24_implement_leading-edge_web-readiness,flaky,DOM not stable,Cancel Transaction,
+Test_25_transform_seamless_info-mediaries,pass,,Money Transaction,
+Test_26_productize_dot-com_e-tailers,fail,Unexpected popup,Money Transaction,1
+Test_27_whiteboard_back-end_e-business,pass,,Money Transaction,
+Test_28_transform_mission-critical_schemas,pass,,Login Function,
+Test_29_brand_holistic_synergies,fail,Element not clickable,Homepage,4
+Test_30_integrate_virtual_partnerships,pass,,Homepage,
+Test_31_morph_virtual_convergence,pass,,Login Function,
+Test_32_incentivize_turn-key_channels,flaky,DOM not stable,Money Transaction,
+Test_33_architect_customized_models,pass,,Money Transaction,
+Test_34_orchestrate_open-source_mindshare,flaky,Session expired,Money Transaction,
+Test_35_re-intermediate_virtual_communities,pass,,Money Transaction,
+Test_36_syndicate_customized_bandwidth,flaky,Driver crash,Cancel Transaction,
+Test_37_enhance_dot-com_initiatives,pass,,Money Transaction,
+Test_38_mesh_killer_web_services,pass,,Money Transaction,
+Test_39_repurpose_bleeding-edge_solutions,fail,Unexpected popup,Login Function,6
+Test_40_maximize_cross-media_e-markets,pass,,Money Transaction,
+Test_41_revolutionize_user-centric_niches,fail,Incorrect credentials,Login Function,1
+Test_42_generate_revolutionary_channels,pass,,Login Function,
+Test_43_evolve_next-generation_markets,pass,,Cancel Transaction,
+Test_44_exploit_dot-com_communities,fail,Validation error,Homepage,7
+Test_45_incubate_end-to-end_info-mediaries,flaky,DOM not stable,Money Transaction,
+Test_46_deploy_clicks-and-mortar_experiences,pass,,Activity History,
+Test_47_incentivize_strategic_mindshare,flaky,Session expired,Cancel Transaction,
+Test_48_morph_end-to-end_users,pass,,Cancel Transaction,
+Test_49_architect_front-end_synergies,pass,,Homepage,
+Test_50_incubate_plug-and-play_solutions,pass,,Activity History,
